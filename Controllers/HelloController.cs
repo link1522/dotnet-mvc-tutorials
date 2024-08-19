@@ -15,6 +15,8 @@ public class HelloController : Controller
 
   public IActionResult Index()
   {
+    // ViewBag.message = "hihi";
+    ViewData["message"] = "hihi";
     return View();
   }
 
