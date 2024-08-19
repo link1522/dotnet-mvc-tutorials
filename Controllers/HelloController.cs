@@ -1,16 +1,21 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MvcMovie.Models;
+using MvcMovie.Services;
+using MvcMovie.Services.Interface;
+using NuGet.DependencyResolver;
 
 namespace MvcMovie.Controllers;
 
 public class HelloController : Controller
 {
   private readonly ILogger<HelloController> _logger;
+  private readonly IMessageWriter _messageWriterService;
 
-  public HelloController(ILogger<HelloController> logger)
+  public HelloController(ILogger<HelloController> logger, IMessageWriter messageWriterService)
   {
     _logger = logger;
+    _messageWriterService = messageWriterService;
   }
 
   public IActionResult Index()
@@ -25,6 +30,12 @@ public class HelloController : Controller
     ViewData["Message"] = "Hello " + name;
     ViewData["NumTimes"] = numTimes;
     return View();
+  }
+
+  public string HelloDI()
+  {
+    _messageWriterService.Write("hi");
+    return "ok";
   }
 
   [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

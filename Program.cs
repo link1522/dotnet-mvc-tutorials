@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using MvcMovie.Services.Interface;
+using MvcMovie.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddDbContext<MvcMovieContext>(options =>
@@ -20,6 +22,7 @@ else
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IMessageWriter, SeocndMessageWriterService>();
 
 var app = builder.Build();
 
