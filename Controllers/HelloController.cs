@@ -25,6 +25,12 @@ public class HelloController : Controller
     return View();
   }
 
+  public IActionResult About()
+  {
+    ViewData["Message"] = "2255777";
+    return View();
+  }
+
   public IActionResult Welcome(string name, int numTimes = 1)
   {
     ViewData["Message"] = "Hello " + name;

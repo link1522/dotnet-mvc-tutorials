@@ -31,8 +31,9 @@ namespace MvcMovie.Controllers
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
-            var movies = from m in _context.Movie
-                         select m;
+            var movies =
+                from m in _context.Movie
+                select m;
 
             if (!string.IsNullOrEmpty(searchString))
             {
